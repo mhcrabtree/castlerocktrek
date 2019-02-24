@@ -1,0 +1,8 @@
+@import "utils/normalize.less";
+@import "lib/bootstrap/less/bootstrap.less";
+
+.txt-shadow {
+  text-shadow: 2px 2px 2px #000000;
+}
+
+

@@ -1,0 +1,80 @@
+@(data: Form[models.forms.Registration])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+@import helper._
+
+@main("Registration", "registration") {
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Page 3 of 6</li>
+    </ol>
+  </nav>
+
+  <div class="container-fluid">
+
+    <form action="@routes.RegistrationController.postPage3()" method="POST">
+      @CSRF.formField
+
+      <h3>Parent Information</h3>
+     
+      <p>Please enter the child's parent information:</p>
+
+      <fieldset>
+        <legend>Mother</legend>
+
+        <div class="form-group">
+          <label for="mother.name.first">First Name</label>
+          <input name="mother.name.first" type="text" class="form-control" id="mother.name.first" placeholder="">
+        </div>
+
+        <div class="form-group">
+          <label for="mother.name.last">Last Name</label>
+          <input name="mother.name.last" type="text" class="form-control" id="mother.name.last" placeholder="">
+        </div>
+
+        <div class="form-group">
+          <label for="mother.contact.phone">Phone</label>
+          <input name="mother.contact.phone" type="text" class="form-control" id="mother.contact.phone" placeholder="(111) 222-3333">
+        </div>
+
+        <div class="form-group">
+          <label for="mother.contact.email">Email</label>
+          <input name="mother.contact.email" type="email" class="form-control" id="mother.contact.email" placeholder="example@@domain.com">
+        </div>
+
+      </fieldset>
+
+
+      <fieldset>
+        <legend>Father</legend>
+
+        <div class="form-group">
+          <label for="father.name.first">First Name</label>
+          <input name="father.name.first" type="text" class="form-control" id="father.name.first" placeholder="">
+        </div>
+
+        <div class="form-group">
+          <label for="father.name.last">Last Name</label>
+          <input name="father.name.last" type="text" class="form-control" id="father.name.last" placeholder="">
+        </div>
+
+        <div class="form-group">
+          <label for="father.contact.phone">Phone</label>
+          <input name="father.contact.phone" type="text" class="form-control" id="father.contact.phone" placeholder="(111) 222-3333">
+        </div>
+
+        <div class="form-group">
+          <label for="father.contact.email">Email</label>
+          <input name="father.contact.email" type="email" class="form-control" id="father.contact.email" placeholder="example@@domain.com">
+        </div>
+
+      </fieldset>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Next</button>
+      </div>
+
+    </form>
+  </div>
+
+}

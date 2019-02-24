@@ -1,0 +1,49 @@
+@(data: Form[models.forms.Registration])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+@import helper._
+
+@main("Registration", "registration") {
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Page 6 of 6</li>
+    </ol>
+  </nav>
+
+  <div class="container-fluid">
+
+    <form action="@routes.RegistrationController.postPage6()" method="POST">
+      @CSRF.formField
+
+      <h3>Parental Consent</h3>
+     
+      <p>We hereby give permission for our son/daughter, ..., to participate in the Castle Rock Colorado State 2019 Youth Trek from ...</p>
+
+      <fieldset class="form-group">
+        <legend>Mother</legend>
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="consent.mother">
+          <label class="form-check-label" for="consent.mother">Mother's Consent</label>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="form-group">
+        <legend>Father</legend>
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="consent.father">
+          <label class="form-check-label" for="consent.father">Father's Consent</label>
+        </div>
+
+      </fieldset>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+
+    </form>
+  </div>
+
+}

@@ -1,0 +1,69 @@
+@(data: Form[models.forms.Registration])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+@import helper._
+
+@main("Registration", "registration") {
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Page 5 of 6</li>
+    </ol>
+  </nav>
+
+  <div class="container-fluid">
+
+    <form action="@routes.RegistrationController.postPage5()" method="POST">
+      @CSRF.formField
+
+      <h3>Medical Information</h3>
+    
+      <p>Please fill out the information below regarding your son/daughter's medical information:</p> 
+
+      <fieldset>
+        <legend>Diet</legend>
+        <div class="form-group">
+          <label for="emergency.name.first">Does your son or daughter require a special diet?</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="medical.diet" id="medical.diet.yes" value="yes">
+            <label class="form-check-label" for="medical.diet.yes">Yes</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="medical.diet" id="medical.diet.no" value="no">
+            <label class="form-check-label" for="medical.diet.no">No</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="medical.diet.details">If yes, please explain the dietary restrictions:</label>
+          <textarea class="form-control" name="medical.diet.details" id="medical.diet.details" rows="3"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Alergies</legend>
+        <div class="form-group">
+          <label for="emergency.name.first">Does your son or daughter have any allergies?</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="medical.alergies" id="medical.alergies.yes" value="yes">
+            <label class="form-check-label" for="medical.alergies.yes">Yes</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="medical.alergies" id="medical.alergies.no" value="no">
+            <label class="form-check-label" for="medical.alergies.no">No</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="medical.alergies.details">If yes, please list the alergies:</label>
+          <textarea class="form-control" name="medical.alergies.details" id="medical.alergies.details" rows="3"></textarea>
+        </div>
+      </fieldset>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Next</button>
+      </div>
+
+    </form>
+  </div>
+
+}

@@ -1,0 +1,52 @@
+@()(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+@import helper._
+
+@main("Home", "home") {
+
+  <div id="trekCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#trekCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#trekCarousel" data-slide-to="1"></li>
+      <li data-target="#trekCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="carousel-max-height">
+          <img src="@routes.Assets.versioned("images/trek2015/cart1.jpg")" class="d-block img-fluid" alt="Trek 2015">
+          @_carousel_caption()
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-max-height">
+          <img src="@routes.Assets.versioned("images/trek2015/scene1.jpg")" class="d-block w-100" alt="Trek 2015">
+          @_carousel_caption()
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-max-height">
+          <img src="@routes.Assets.versioned("images/trek2015/scene2.jpg")" class="d-block w-100" alt="Trek 2015">
+          @_carousel_caption()
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#trekCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#trekCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container-fluid text-center">
+    <h1>Castle Rock Stake Trek 2019</h1>
+    <h2>July 22-25, 2019</h2>
+    <p>Registration will begin in February.</p>
+    <p>All will be notified by email.</p>
+  </div>
+
+}

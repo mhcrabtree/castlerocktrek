@@ -1,0 +1,30 @@
+@()(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+@import helper._
+
+@main("Registration", "registration") {
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Completed</li>
+    </ol>
+  </nav>
+
+  <div class="container-fluid">
+
+    <form action="@routes.RegistrationController.index()" method="GET">
+      @CSRF.formField
+
+      <h3>Thank you!</h3>
+
+      <p>We have received this information and have securely recorded it. You may fill out the form again to register another child or close this webpage.<p>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Register Additional Child</button>
+      </div>
+
+    </form>
+
+  </div>
+
+}
