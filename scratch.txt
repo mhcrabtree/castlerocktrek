@@ -6,3 +6,45 @@
 }
 
 
+
+
+
+      <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Organization</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="organization" id="organization.miamaids" value="Mia Maids"
+                @("checked".when(data("organization").value == Some("Mia Maids")))>
+              <label class="form-check-label" for="organization.miamaids">
+                Mia Maids 
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="organization" id="organization.laurels" value="Laurels"
+                @("checked".when(data("organization").value == Some("Laurels")))>
+              <label class="form-check-label" for="organization.laurels">
+                Laurels 
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="organization" id="organization.teachers" value="Teachers"
+                @("checked".when(data("organization").value == Some("Teachers")))>
+              <label class="form-check-label" for="organization.teachers">
+                Teachers 
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="organization" id="organization.priests" value="Priests"
+                @("checked".when(data("organization").value == Some("Priests")))>
+              <label class="form-check-label" for="organization.priests">
+                Priests 
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </fieldset>

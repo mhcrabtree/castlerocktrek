@@ -9,8 +9,7 @@ object Ward {
 	
  	def id(db: Database): Form[Id] = Form(
  		mapping(
- 			"id" -> number
-// 			"id" -> number.verifying("error.invalid", id => (Ward.find(db, id).isDefined))
+ 			"id" -> number.verifying("error.invalid", v => (models.db.Ward.find(db, v).isDefined))
  		)(Id.apply)(Id.unapply)
 	)
 	

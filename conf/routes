@@ -9,6 +9,7 @@ GET     /ping                       controllers.PingController.index()
 GET     /                           controllers.HomeController.index()
 
 GET     /registration               controllers.RegistrationController.index()
+GET     /registration/reset         controllers.RegistrationController.reset()
 
 GET     /registration/page1         controllers.RegistrationController.page1()
 POST    /registration/page1         controllers.RegistrationController.postPage1()
