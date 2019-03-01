@@ -17,29 +17,10 @@
 
       <h3>Ward Information</h3>
     
-      <p>Please selet the ward your child attends:</p>
+      <p>Please select the ward your child attends:</p>
 
-      <div class="form-group">
-        <label for="ward">Ward</label>
-        <select id="ward" name="ward.id" class="form-control @("is-invalid".when(data("ward.id").hasErrors))">
-          <option class="blank" value="">[ Select an option ]</option>
-          @for(o <- wards) {
-          <option value="@{o._1}" @("selected".when(o._1 == data("ward.id").value.getOrElse("")))>@{o._2}</option>
-          }
-        </select>
-        <div class="invalid-feedback">This field is required.</div>
-      </div>
-
-      <div class="form-group">
-        <label for="organization">Organization</label>
-        <select id="organization" name="organization.id" class="form-control @("is-invalid".when(data("organization.id").hasErrors))">
-          <option class="blank" value="">[ Select an option ]</option>
-          @for(o <- organizations) {
-          <option value="@{o._1}" @("selected".when(o._1 == data("organization.id").value.getOrElse("")))>@{o._2}</option>
-          }
-        </select>
-        <div class="invalid-feedback">This field is required.</div>
-      </div>
+      @_select(data("ward.id"), wards)
+      @_select(data("organization.id"), organizations)
 
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Next</button>

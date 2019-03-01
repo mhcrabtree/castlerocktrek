@@ -21,7 +21,15 @@ case class Registration(
   def toPage2: models.forms.Page2 = models.forms.Page2(
     name = this.child.name.toForm,
     dob = this.child.dob,
-    gender = this.child.gender
+    gender = models.forms.Id(this.child.gender.id)
+  )
+
+  def toPage3: models.forms.Page3 = models.forms.Page3(
+    // LEFT OFF HERE
+    // ADD PARENT, CONTACT MODELS 
+    name = this.child.name.toForm,
+    dob = this.child.dob,
+    gender = models.forms.Id(this.child.gender.id)
   )
 
 }
@@ -32,7 +40,7 @@ object Registration {
     get[Int]("id") ~
     get[Int]("ward_id") ~
     get[Int]("organization_id") ~
-    Child.parser map {
+    Child.parser(db) map {
       case id ~ wardID ~ organizationID ~ child => {
         val ward = Ward.find(db, wardID).get
         val organization = Organization.find(db, organizationID).get
@@ -88,14 +96,14 @@ object Registration {
       |  child_name_middle = {nameMiddle},
       |  child_name_last = {nameLast},
       |  child_dob = {dob},
-      |  child_gender = {gender}
+      |  child_gender_id = {genderID}
       |WHERE id = {ID}
     """.stripMargin).on(
       "nameFirst" -> data.name.first,
       "nameMiddle" -> data.name.middle,
       "nameLast" -> data.name.last,
       "dob" -> data.dob,
-      "gender" -> data.gender,
+      "genderID" -> data.gender.id,
       "ID" -> id
     ).execute()
 

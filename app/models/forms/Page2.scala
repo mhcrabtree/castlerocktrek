@@ -10,7 +10,7 @@ import play.api.libs.json._
 case class Page2(
   name: Name,
   dob: String,
-  gender: String
+  gender: Id
 )
 
 object Page2 {
@@ -20,7 +20,7 @@ object Page2 {
     mapping(
       "name" -> Name.post.mapping,
       "dob" -> nonEmptyText.verifying("error.invalid", v => true), // TODO parse the dob and validate it
-      "gender" -> nonEmptyText.verifying("error.invalid", v => genders.contains(v))
+      "gender" -> Gender.id(db).mapping
     )(Page2.apply)(Page2.unapply)
   )
   

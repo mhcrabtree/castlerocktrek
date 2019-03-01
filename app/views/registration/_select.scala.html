@@ -1,0 +1,11 @@
+@(field : play.api.data.Field, options: Seq[(String, String)])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+<div class="form-group">
+  <label for="@field.name">@Messages(field.name)</label>
+  <select id="@field.name" name="@field.name" class="form-control @("is-invalid".when(field.hasErrors))">
+    <option class="blank" value="">[ Select an option ]</option>
+    @for(o <- options) {
+    <option value="@{o._1}" @("selected".when(o._1 == field.value.getOrElse("")))>@{o._2}</option>
+    }
+  </select>
+  <div class="invalid-feedback">This field is required.</div>
+</div>

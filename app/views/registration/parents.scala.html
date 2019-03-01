@@ -22,51 +22,20 @@
       <fieldset>
         <legend>Mother</legend>
 
-        <div class="form-group">
-          <label for="mother.name.first">First Name</label>
-          <input name="mother.name.first" type="text" class="form-control" id="mother.name.first" placeholder="">
-        </div>
-
-        <div class="form-group">
-          <label for="mother.name.last">Last Name</label>
-          <input name="mother.name.last" type="text" class="form-control" id="mother.name.last" placeholder="">
-        </div>
-
-        <div class="form-group">
-          <label for="mother.contact.phone">Phone</label>
-          <input name="mother.contact.phone" type="text" class="form-control" id="mother.contact.phone" placeholder="(111) 222-3333">
-        </div>
-
-        <div class="form-group">
-          <label for="mother.contact.email">Email</label>
-          <input name="mother.contact.email" type="email" class="form-control" id="mother.contact.email" placeholder="example@@domain.com">
-        </div>
+        @_text(data("mother.name.first"))
+        @_text(data("mother.name.last"))
+        @_text(data("mother.contact.phone"))
+        @_text(data("mother.contact.email"))
 
       </fieldset>
-
 
       <fieldset>
         <legend>Father</legend>
 
-        <div class="form-group">
-          <label for="father.name.first">First Name</label>
-          <input name="father.name.first" type="text" class="form-control" id="father.name.first" placeholder="">
-        </div>
-
-        <div class="form-group">
-          <label for="father.name.last">Last Name</label>
-          <input name="father.name.last" type="text" class="form-control" id="father.name.last" placeholder="">
-        </div>
-
-        <div class="form-group">
-          <label for="father.contact.phone">Phone</label>
-          <input name="father.contact.phone" type="text" class="form-control" id="father.contact.phone" placeholder="(111) 222-3333">
-        </div>
-
-        <div class="form-group">
-          <label for="father.contact.email">Email</label>
-          <input name="father.contact.email" type="email" class="form-control" id="father.contact.email" placeholder="example@@domain.com">
-        </div>
+        @_text(data("father.name.first"))
+        @_text(data("father.name.last"))
+        @_text(data("father.contact.phone"))
+        @_text(data("father.contact.email"))
 
       </fieldset>
 

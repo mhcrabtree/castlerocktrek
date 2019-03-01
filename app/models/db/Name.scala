@@ -13,7 +13,8 @@ case class Name(
 
 object Name {
 
-  val parserChild: RowParser[Name] = {
+  def parserChild(prefix: String): RowParser[Name] = {
+    // TODO extend this to supply prefix like 'child_', 'mother_', 'father_'
     get[String]("child_name_first") ~
     get[Option[String]]("child_name_middle") ~
     get[String]("child_name_last") map {

@@ -1,1 +1,53 @@
 # https://www.playframework.com/documentation/latest/ScalaI18N
+required=This field is required.
+
+ward.id=Ward
+ward.id.placeholder=
+
+organization.id=Organization
+organization.id.placeholder=
+
+name.first=First Name
+name.first.placeholder=
+
+name.middle=Middle Name
+name.middle.placeholder=
+
+name.last=Last Name
+name.last.placeholder=
+
+dob=Birth Date
+dob.placeholder=MM/DD/YYYY
+
+gender=Gender
+gender.placeholder=
+
+mother.name.first=First Name
+mother.name.first.placeholder=
+
+mother.name.middle=Middle Name
+mother.name.middle.placeholder=
+
+mother.name.last=Last Name
+mother.name.last.placeholder=
+
+mother.contact.phone=Phone
+mother.contact.phone.placeholder=(222) 333-4444
+
+mother.contact.email=Email
+mother.contact.email.placeholder=example@domain.com
+
+father.name.first=First Name
+father.name.first.placeholder=
+
+father.name.middle=Middle Name
+father.name.middle.placeholder=
+
+father.name.last=Last Name
+father.name.last.placeholder=
+
+father.contact.phone=Phone
+father.contact.phone.placeholder=(222) 333-4444
+
+father.contact.email=Email
+father.contact.email.placeholder=example@domain.com

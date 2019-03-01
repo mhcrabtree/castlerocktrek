@@ -85,7 +85,7 @@ class RegistrationController @Inject()(db: Database, cc: ControllerComponents, c
 
     val view = onRegistrationID.flatMap { id =>
       models.db.Registration.find(db, id).map(_.toPage2).map { formData =>
-        views.html.registration.child(models.forms.Page2.post(db).fill(formData))
+        views.html.registration.child(models.forms.Page2.post(db).fill(formData), models.db.Gender.options(db))
       }
     }.getOrElse {
       views.html.registration.child(models.forms.Page2.post(db))
@@ -100,7 +100,8 @@ class RegistrationController @Inject()(db: Database, cc: ControllerComponents, c
 
     models.forms.Page2.post(db).bindFromRequest.fold(
       formWithErrors => {
-        val view = views.html.registration.child(formWithErrors)
+        println(formWithErrors)
+        val view = views.html.registration.child(formWithErrors, models.db.Gender.options(db))
         BadRequest(view).as(HTML)
       },
       data => {
@@ -115,32 +116,44 @@ class RegistrationController @Inject()(db: Database, cc: ControllerComponents, c
     )
   }
 
-
   /** Page 3
    *
    */
   def page3() = BaseAction() { context => timestamp => implicit request: Request[AnyContent] =>
-    val view = views.html.registration.parents(Registration.post(db))
+    val onPage: Option[Int] = request.session.get("page").map(_.toInt)
+    val onRegistrationID: Option[Int] = request.session.get("registrationID").map(_.toInt)
+
+    val view = onRegistrationID.flatMap { id =>
+      models.db.Registration.find(db, id).map(_.toPage3).map { formData =>
+        views.html.registration.parents(models.forms.Page3.post(db).fill(formData))
+      }
+    }.getOrElse {
+      views.html.registration.parents(models.forms.Page3.post(db))
+    }
 
     Ok(view).as(HTML)
   }
-
   
   def postPage3() = BaseAction() { context => timestamp => implicit request: Request[AnyContent] =>
+    val onPage: Option[Int] = request.session.get("page").map(_.toInt)
+    val onRegistrationID: Option[Int] = request.session.get("registrationID").map(_.toInt)
 
-    Registration.post(db).bindFromRequest.fold(
+    models.forms.Page3.post(db).bindFromRequest.fold(
       formWithErrors => {
-        BadRequest("There was an error processing the form...").as(TEXT)
+        val view = views.html.registration.parents(formWithErrors)
+        BadRequest(view).as(HTML)
       },
       data => {
-        println(data)
-        // save to db
-        Ok("Goodbye World")
+        val newID: Option[Int] = models.db.Registration.updatePage3(db, data, onRegistrationID.get)
+
+        newID.map { id =>
+          Redirect(routes.RegistrationController.page4()).withSession("page" -> "4", "registrationID" -> id.toString)
+        }.getOrElse {
+          BadRequest("Oops, something has gone wrong!")
+        }
       }
     )
-
   }
-
 
   /** Page 4
    *
