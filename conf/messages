@@ -1,6 +1,14 @@
 # https://www.playframework.com/documentation/latest/ScalaI18N
 required=This field is required.
 
+error.general=There are errors on this page that must be corrected.
+
+previous=Previous
+next=Next
+submit=Submit
+save=Save
+agree=Agree and Continue to Next Page
+
 ward.id=Ward
 ward.id.placeholder=
 
@@ -19,8 +27,8 @@ name.last.placeholder=
 dob=Birth Date
 dob.placeholder=MM/DD/YYYY
 
-gender=Gender
-gender.placeholder=
+gender.id=Gender
+gender.id.placeholder=
 
 mother.name.first=First Name
 mother.name.first.placeholder=
@@ -51,3 +59,50 @@ father.contact.phone.placeholder=(222) 333-4444
 
 father.contact.email=Email
 father.contact.email.placeholder=example@domain.com
+
+emergency.name.first=First Name
+emergency.name.first.placeholder=
+
+emergency.name.last=Last Name
+emergency.name.last.placeholder=
+
+emergency.phone=Phone
+emergency.phone.placeholder=(222) 333-4444
+
+medical.conditions.provider.details=Please list any conditions for which the participant sees a medical provider regularly:
+medical.conditions.provider.details.placeholder=
+
+medical.conditions=Does the participant suffer from any of the following conditions:
+medical.conditions.epilepsy=Epilepsy
+medical.conditions.highbloodpressure=High Blood Pressure
+medical.conditions.heartdisease=Heart Disease (Including pacemaker, heart murmur, abnormal rhymthm, etc.)
+medical.conditions.lungdisease=Lung Disease (Including asthma, etc.)
+medical.conditions.orthopedic=Orthopedic concerns (Including foot or ankle problems, leg, knee or hip problems, back pain, etc.):
+
+medical.medications.regular.details=List all medications taken regularly, including dose, indication, interval taken, and whether the medication is administered by self or others:
+medical.medications.regular.details.placeholder=
+
+medical.medications.asneeded.details=List all medications taken on an as-needed basis including dose, indication, and interval taken:
+medical.medications.asneeded.details.placeholder=
+
+medical.alergies=Does the participant suffer from allergies or insensitivity to any of the following, including severity of reaction:
+medical.alergies.medications=Medications which are prescription or over-the-counter:
+medical.alergies.pollen=Inhaled pollen such as grasses, trees, weeds, etc.:
+medical.alergies.toxins=Insect bites or other toxins:
+medical.alergies.foods=Foods:
+medical.alergies.orthopedic=Orthopedic concerns (Including foot or ankle problems, leg, knee or hip problems, back pain, etc.):
+
+medical.hospitalization.5years=Has the participant been hospitalized in the last five years?
+medical.hospitalization.5years.details=If yes, pelase indicate the reason:
+medical.hospitalization.5years.details.placeholder=
+
+medical.mental.concerns=Are there any concerns about the participant's emotional or mental health (Including ADHD, anxiety, or depression)?
+medical.mental.concerns.details=If yes, please indicate the reason:
+medical.mental.concerns.details.placeholder=
+
+medical.fitness.level=Which of the following most accurately describes the participant's physical conditioning and fitness:
+
+medical.other.concerns.details=Please identify any other concerns about the participant's participation on Trek:
+medical.other.concerns.details.placeholder=
+
+medical.consent.legal.given=I HAVE DISCLOSED THE ABOVE INFORMATION VOLUNTARILY AND GIVE PERMISSION ON BEHALF OF MYSELF AND/OR MY SON/DAUGHTER TO DISCLOSE THIS INFORMATION TO STAKE TREK LEADERS AND OTHERS WITH A NEED TO KNOW SUCH INFORMATION IN ORDER TO FACILITATE.

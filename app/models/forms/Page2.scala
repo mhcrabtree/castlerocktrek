@@ -14,8 +14,6 @@ case class Page2(
 )
 
 object Page2 {
-  val genders: Seq[String] = Seq("Male", "Female")
-  
   def post(db: Database): Form[Page2] = Form(
     mapping(
       "name" -> Name.post.mapping,

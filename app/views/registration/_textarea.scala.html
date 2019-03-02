@@ -1,0 +1,6 @@
+@(field : play.api.data.Field, cols: Int = 3)(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+<div class="form-group">
+  <label for="@field.name">@Messages(field.name)</label>
+  <textarea name="@field.name" class="form-control @("is-invalid".when(field.hasErrors))" id="@field.name" placeholder="@Messages(field.name+".placeholder")" rows="@cols">@(field.value.getOrElse(""))</textarea>
+  <div class="invalid-feedback">@Messages("required")</div>
+</div>

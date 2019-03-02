@@ -15,6 +15,10 @@
     <form action="@routes.RegistrationController.postPage1()" method="POST">
       @CSRF.formField
 
+      @if(data.hasErrors) {
+        @_error("error.general")
+      }
+
       <h3>Ward Information</h3>
     
       <p>Please select the ward your child attends:</p>
@@ -23,7 +27,7 @@
       @_select(data("organization.id"), organizations)
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Next</button>
+        <button type="submit" class="btn btn-primary">@Messages("next")</button>
       </div>
 
     </form>

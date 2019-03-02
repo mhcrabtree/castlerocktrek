@@ -1,4 +1,4 @@
-@(data: Form[models.forms.Registration])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+@(data: Form[models.forms.Page4])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
 
 @import helper._
 
@@ -15,27 +15,21 @@
     <form action="@routes.RegistrationController.postPage4()" method="POST">
       @CSRF.formField
 
+      @if(data.hasErrors) {
+        @_error("error.general")
+      }
+
       <h3>Emergency Contact</h3>
      
       <p>Please provide a name and number for an emergency contact:</p>
 
-      <div class="form-group">
-        <label for="emergency.name.first">First Name</label>
-        <input name="emergency.name.first" type="text" class="form-control" id="emergency.name.first" placeholder="">
-      </div>
+      @_text(data("emergency.name.first"))
+      @_text(data("emergency.name.last"))
+      @_text(data("emergency.phone"))
 
       <div class="form-group">
-        <label for="emergency.name.last">Last Name</label>
-        <input name="emergency.name.last" type="text" class="form-control" id="emergency.name.last" placeholder="">
-      </div>
-
-      <div class="form-group">
-        <label for="emergency.contact.phone">Phone</label>
-        <input name="emergency.contact.phone" type="text" class="form-control" id="emergency.contact.phone" placeholder="(111) 222-3333">
-      </div>
-
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Next</button>
+        <a class="btn btn-primary" href="@routes.RegistrationController.page3()" role="button">@Messages("previous")</a> 
+        <button type="submit" class="btn btn-primary">@Messages("next")</button>
       </div>
 
     </form>

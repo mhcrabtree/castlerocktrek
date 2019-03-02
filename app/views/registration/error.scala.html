@@ -1,0 +1,24 @@
+@()(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+@import helper._
+
+@main("Registration", "registration") {
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Error</li>
+    </ol>
+  </nav>
+
+  <div class="container-fluid">
+
+    <h3>Something has gone wrong!</h3>
+   
+    <p>There has been an error on this form.  Please click "Back" on your browser, refresh the page, and attempt to re-submit the form.</p>
+    <p>If attempts do not resolve the issue then please contact a member of the Trek committee and we will assist you.</p>
+
+    <p>We appologize for the inconvenience.</p>
+
+  </div>
+
+}

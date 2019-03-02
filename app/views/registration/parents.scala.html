@@ -1,4 +1,4 @@
-@(data: Form[models.forms.Registration])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+@(data: Form[models.forms.Page3])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
 
 @import helper._
 
@@ -15,9 +15,16 @@
     <form action="@routes.RegistrationController.postPage3()" method="POST">
       @CSRF.formField
 
+      @if(data.hasErrors) {
+        @_error("error.general")
+      }
+
       <h3>Parent Information</h3>
      
-      <p>Please enter the child's parent information:</p>
+      <p>Please enter the participating child's parent information:</p>
+      <div class="alert alert-info" role="alert">
+        Note: If there is only one parent then fill out both parent sections with the same information.
+      </div>
 
       <fieldset>
         <legend>Mother</legend>
@@ -40,7 +47,8 @@
       </fieldset>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">Next</button>
+        <a class="btn btn-primary" href="@routes.RegistrationController.page2()" role="button">@Messages("previous")</a> 
+        <button type="submit" class="btn btn-primary">@Messages("next")</button>
       </div>
 
     </form>
