@@ -14,9 +14,16 @@ case class Contact(
 
 object Contact {
 
-  val parser: RowParser[Contact] = {
+  val parserMother: RowParser[Contact] = {
     get[String]("parent_mother_contact_phone") ~
     get[String]("parent_mother_contact_email") map {
+      case phone ~ email => Contact(phone, email)
+    }
+  }
+
+  val parserFather: RowParser[Contact] = {
+    get[String]("parent_father_contact_phone") ~
+    get[String]("parent_father_contact_email") map {
       case phone ~ email => Contact(phone, email)
     }
   }

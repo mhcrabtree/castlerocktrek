@@ -234,8 +234,15 @@ class RegistrationController @Inject()(db: Database, cc: ControllerComponents, c
    *
    */
   def completed() = BaseAction() { context => timestamp => implicit request: Request[AnyContent] =>
-    val view = views.html.registration.thanks()
-    Ok(view).as(HTML)
+    val onRegistrationID: Option[Int] = request.session.get("registrationID").map(_.toInt)
+
+    onRegistrationID.flatMap { id =>
+      models.db.Registration.find(db, id).map { data =>
+        Ok(views.html.registration.thanks(data)).as(HTML)
+      }
+    }.getOrElse {
+      BadRequest(views.html.registration.error()).as(HTML)
+    }
   }
 
 }

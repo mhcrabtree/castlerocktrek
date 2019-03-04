@@ -1,0 +1,18 @@
+[Unit]
+Description=CastleRockTrek
+
+[Service]
+WorkingDirectory=/home/ec2-user/castlerocktrek
+ExecStart=/home/ec2-user/castlerocktrek/bin/castlerocktrek -Dhttp.port=9000 -Dhttps.port=9443 -Dplay.http.secret.key=secret -Dconfig.file=/home/ec2-user/application.prod.conf -Dpidfile.path=/home/ec2-user/CASTLEROCKTREK_RUNNING.pid -Dlogger.file=/home/ec2-user/castlerocktrek/conf/logback.prod.xml -Dpidfile.path=/dev/null 
+User=ec2-user
+Group=ec2-user
+
+Restart=always
+RestartSec=10s
+Type=simple
+LimitNOFILE=49152
+
+NotifyAccess=main
+
+[Install]
+WantedBy=multi-user.target

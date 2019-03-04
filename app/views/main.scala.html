@@ -16,7 +16,6 @@
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
   </head>
   <body>
-    <div class="container">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <a class="navbar-brand" href="@routes.HomeController.index()"><img src="@routes.Assets.versioned("images/logo.png")" width="80" height="80" border="0"></a>
@@ -38,6 +37,13 @@
 
     @content
 
+    <div class="container-fluid">
+      <br>
+      <div class="row">
+       <div class="col">
+          <p><small>&copy; 2019</small></p>
+        </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

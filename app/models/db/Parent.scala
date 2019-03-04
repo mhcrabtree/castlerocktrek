@@ -16,14 +16,14 @@ object Parent {
 
   val parserMother: RowParser[Parent] = {
     Name.parserMother ~
-    Contact.parser map {
+    Contact.parserMother map {
       case name ~ contact => Parent(name, contact)
     }
   }
 
   val parserFather: RowParser[Parent] = {
     Name.parserFather ~
-    Contact.parser map {
+    Contact.parserFather map {
       case name ~ contact => Parent(name, contact)
     }
   }

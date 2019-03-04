@@ -1,4 +1,4 @@
-@()(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+@(data: models.db.Registration)(implicit request: RequestHeader, messagesProvider: MessagesProvider)
 
 @import helper._
 
@@ -17,10 +17,86 @@
 
       <h3>Thank you!</h3>
 
-      <p>We have received this information and have securely recorded it. You may fill out the form again to register another child or close this webpage.<p>
+      <p>You have successfully registered the following participant.  If any of the information below is incorrect then please click <i>Previous</i> to return to the previous pages and correct any errors.</p>
+      <p>You may fill out the form again to register another child or close this webpage.</p>
+
+      <fieldset>
+        <legend>Participating Child</legend>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">First</th>
+              <th scope="col">Middle</th>
+              <th scope="col">Last</th>
+              <th scope="col">Ward</th>
+              <th scope="col">DOB</th>
+              <th scope="col">Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>@(data.child.name.first)</td>
+              <td>@(data.child.name.middle)</td>
+              <td>@(data.child.name.last)</td>
+              <td>@(data.ward.name) (@(data.organization.name))</td>
+              <td>@(data.child.dob)</td>
+              <td>@(data.child.gender.name)</td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <fieldset>
+        <legend>Parent(s)</legend>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>@(data.mother.name.first)</td>
+              <td>@(data.mother.name.last)</td>
+              <td>@(data.mother.contact.phone)</td>
+              <td>@(data.mother.contact.email)</td>
+            </tr>
+            <tr>
+              <td>@(data.father.name.first)</td>
+              <td>@(data.father.name.last)</td>
+              <td>@(data.father.contact.phone)</td>
+              <td>@(data.father.contact.email)</td>
+            </tr>          
+          </tbody>
+        </table>
+      </fieldset>
+
+      <fieldset>
+        <legend>Emergency Contact</legend>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>@(data.emergency.name.first)</td>
+              <td>@(data.emergency.name.last)</td>
+              <td>@(data.emergency.phone)</td>
+            </tr>
+          </tbody>
+        </table>
+      </fieldset>
 
       <div class="form-group">
         <a class="btn btn-primary" href="@routes.RegistrationController.page6()" role="button">@Messages("previous")</a> 
+        &nbsp;
         <button type="submit" class="btn btn-primary">Register Additional Child</button>
       </div>
 
