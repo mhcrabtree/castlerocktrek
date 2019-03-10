@@ -1,0 +1,40 @@
+@(data: Form[models.forms.Page3AdultFemale])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+
+@import helper._
+
+@main("Registration", "registration") {
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Page 3 of 6</li>
+    </ol>
+  </nav>
+
+  <div class="container-fluid">
+
+    <form action="@routes.RegistrationController.postPage3AF()" method="POST">
+      @CSRF.formField
+
+      @if(data.hasErrors) {
+        @_error("error.general")
+      }
+
+      <h3>Contact Information</h3>
+     
+      <p>Please enter the participant's contact information:</p>
+
+      <input type="hidden" name="mother.name.first" value="na" />
+      <input type="hidden" name="mother.name.last" value="na" />
+      @_text(data("mother.contact.phone"))
+      @_text(data("mother.contact.email"))
+
+      <div class="form-group">
+        <a class="btn btn-primary" href="@routes.RegistrationController.page2()" role="button">@Messages("previous")</a> 
+        &nbsp;
+        <button type="submit" class="btn btn-primary">@Messages("next")</button>
+      </div>
+
+    </form>
+  </div>
+
+}

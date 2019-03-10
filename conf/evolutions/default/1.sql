@@ -30,10 +30,11 @@ CREATE TABLE `organization`(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `organization` (`name`) VALUES
-  ('Mia Maids'),
-  ('Laurels'),
-  ('Teachers'),
-  ('Priests');
+  ('Youth Mia Maids'),
+  ('Youth Laurels'),
+  ('Youth Teachers'),
+  ('Youth Priests'),
+  ('Adult Participant');
 
 CREATE TABLE `gender`(
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,

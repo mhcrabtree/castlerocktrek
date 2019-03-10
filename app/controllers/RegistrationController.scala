@@ -111,8 +111,15 @@ class RegistrationController @Inject()(db: Database, cc: ControllerComponents, c
     val onRegistrationID: Option[Int] = request.session.get("registrationID").map(_.toInt)
 
     onRegistrationID.flatMap { id =>
-      models.db.Registration.find(db, id).map(_.toPage3).map { formData =>
-        Ok(views.html.registration.parents(models.forms.Page3.post(db).fill(formData)))
+      models.db.Registration.find(db, id).map { data =>
+        // show a different form based on adult vs child participant
+        if (data.organization.id == 5 && data.child.gender.id == 2) { // adult male
+          Ok(views.html.registration.parentsAdultMale(models.forms.Page3AdultMale.post(db).fill(data.toPage3AdultMale)))
+        } else if (data.organization.id == 5) { // adult female
+          Ok(views.html.registration.parentsAdultFemale(models.forms.Page3AdultFemale.post(db).fill(data.toPage3AdultFemale)))
+        } else { // child/other
+          Ok(views.html.registration.parents(models.forms.Page3.post(db).fill(data.toPage3)))
+        }
       }
     }.getOrElse {
       BadRequest(views.html.registration.error()).as(HTML)
@@ -128,6 +135,44 @@ class RegistrationController @Inject()(db: Database, cc: ControllerComponents, c
       },
       data => {
         val newID: Option[Int] = models.db.Registration.updatePage3(db, data, onRegistrationID.get)
+
+        newID.map { id =>
+          Redirect(routes.RegistrationController.page4()).withSession("page" -> "4", "registrationID" -> id.toString)
+        }.getOrElse {
+          BadRequest(views.html.registration.error()).as(HTML)
+        }
+      }
+    )
+  }
+
+  def postPage3AM() = BaseAction() { context => timestamp => implicit request: Request[AnyContent] =>
+    val onRegistrationID: Option[Int] = request.session.get("registrationID").map(_.toInt)
+
+    models.forms.Page3AdultMale.post(db).bindFromRequest.fold(
+      formWithErrors => {
+        BadRequest(views.html.registration.parentsAdultMale(formWithErrors))
+      },
+      data => {
+        val newID: Option[Int] = models.db.Registration.updatePage3AM(db, data, onRegistrationID.get)
+
+        newID.map { id =>
+          Redirect(routes.RegistrationController.page4()).withSession("page" -> "4", "registrationID" -> id.toString)
+        }.getOrElse {
+          BadRequest(views.html.registration.error()).as(HTML)
+        }
+      }
+    )
+  }
+
+  def postPage3AF() = BaseAction() { context => timestamp => implicit request: Request[AnyContent] =>
+    val onRegistrationID: Option[Int] = request.session.get("registrationID").map(_.toInt)
+
+    models.forms.Page3AdultFemale.post(db).bindFromRequest.fold(
+      formWithErrors => {
+        BadRequest(views.html.registration.parentsAdultFemale(formWithErrors))
+      },
+      data => {
+        val newID: Option[Int] = models.db.Registration.updatePage3AF(db, data, onRegistrationID.get)
 
         newID.map { id =>
           Redirect(routes.RegistrationController.page4()).withSession("page" -> "4", "registrationID" -> id.toString)

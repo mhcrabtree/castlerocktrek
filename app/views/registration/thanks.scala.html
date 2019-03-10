@@ -21,7 +21,7 @@
       <p>You may fill out the form again to register another child or close this webpage.</p>
 
       <fieldset>
-        <legend>Participating Child</legend>
+        <legend>Participant</legend>
         <table class="table">
           <thead>
             <tr>
@@ -46,6 +46,43 @@
         </table>
       </fieldset>
 
+      @if(data.organization.id == 5 && data.child.gender.id == 2) {
+      <fieldset>
+        <legend>Contact Info</legend>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>@(data.father.contact.phone)</td>
+              <td>@(data.father.contact.email)</td>
+            </tr>          
+          </tbody>
+        </table>
+      </fieldset>
+      } else if(data.organization.id == 5 && data.child.gender.id == 3) {
+      <fieldset>
+        <legend>Contact Info</legend>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>@(data.mother.contact.phone)</td>
+              <td>@(data.mother.contact.email)</td>
+            </tr>          
+          </tbody>
+        </table>
+      </fieldset>      
+      } else {
       <fieldset>
         <legend>Parent(s)</legend>
         <table class="table">
@@ -73,6 +110,7 @@
           </tbody>
         </table>
       </fieldset>
+      }
 
       <fieldset>
         <legend>Emergency Contact</legend>
@@ -97,7 +135,7 @@
       <div class="form-group">
         <a class="btn btn-primary" href="@routes.RegistrationController.page6()" role="button">@Messages("previous")</a> 
         &nbsp;
-        <button type="submit" class="btn btn-primary">Register Additional Child</button>
+        <button type="submit" class="btn btn-primary">Register Additional Participant</button>
       </div>
 
     </form>

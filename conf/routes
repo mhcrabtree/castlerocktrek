@@ -19,6 +19,8 @@ POST    /registration/page2         controllers.RegistrationController.postPage2
 
 GET     /registration/page3         controllers.RegistrationController.page3()
 POST    /registration/page3         controllers.RegistrationController.postPage3()
+POST    /registration/page3am       controllers.RegistrationController.postPage3AM()
+POST    /registration/page3af       controllers.RegistrationController.postPage3AF()
 
 GET     /registration/page4         controllers.RegistrationController.page4()
 POST    /registration/page4         controllers.RegistrationController.postPage4()

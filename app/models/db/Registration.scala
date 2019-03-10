@@ -17,6 +17,16 @@ case class Registration(
   medical: Medical
 ) {
 
+  val consentNames: String = {
+    if (this.organization.id == 5) {
+      "%s".format(this.child.name.full)
+    } else if (this.mother.name.full == this.father.name.full) {
+      "%s".format(this.mother.name.full) // they're the same
+    } else {
+      "%s and %s".format(this.mother.name.full, this.father.name.full)
+    }
+  }
+
   def toPage1: models.forms.Page1 = models.forms.Page1(
     organization = models.forms.Id(this.organization.id),
     ward = models.forms.Id(this.ward.id) 
@@ -32,6 +42,14 @@ case class Registration(
     mother = this.mother.toForm,
     father = this.father.toForm
   )  
+
+  def toPage3AdultMale: models.forms.Page3AdultMale = models.forms.Page3AdultMale(
+    father = this.father.toForm
+  )
+
+  def toPage3AdultFemale: models.forms.Page3AdultFemale = models.forms.Page3AdultFemale(
+    mother = this.mother.toForm
+  )
 
   def toPage4: models.forms.Page4 = models.forms.Page4(
     emergency = this.emergency.toForm
@@ -147,6 +165,36 @@ object Registration {
       "fatherNameLast" -> data.father.name.last,
       "fatherContactPhone" -> data.father.contact.phone,
       "fatherContactEmail" -> data.father.contact.email,
+      "ID" -> id
+    ).execute()
+
+    Some(id)
+  } 
+
+  def updatePage3AM(db: Database, data: models.forms.Page3AdultMale, id: Int): Option[Int] = db.withConnection { implicit connection =>
+    SQL("""
+      |UPDATE registration SET
+      |  parent_father_contact_phone = {fatherContactPhone},
+      |  parent_father_contact_email = {fatherContactEmail}      
+      |WHERE id = {ID}
+    """.stripMargin).on(
+      "fatherContactPhone" -> data.father.contact.phone,
+      "fatherContactEmail" -> data.father.contact.email,
+      "ID" -> id
+    ).execute()
+
+    Some(id)
+  } 
+
+  def updatePage3AF(db: Database, data: models.forms.Page3AdultFemale, id: Int): Option[Int] = db.withConnection { implicit connection =>
+    SQL("""
+      |UPDATE registration SET
+      |  parent_mother_contact_phone = {motherContactPhone},
+      |  parent_mother_contact_email = {motherContactEmail}
+      |WHERE id = {ID}
+    """.stripMargin).on(
+      "motherContactPhone" -> data.mother.contact.phone,
+      "motherContactEmail" -> data.mother.contact.email,
       "ID" -> id
     ).execute()
 
