@@ -19,7 +19,8 @@ INSERT INTO `ward` (`name`) VALUES
   ('Park Meadows Ward'),
   ('Perry Park Ward'),
   ('Plum Creek Ward'),
-  ('Terrain Ward');
+  ('Terrain Ward'),
+  ('Founders Ward');
  
 CREATE TABLE `organization`(
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
