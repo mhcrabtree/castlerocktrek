@@ -22,14 +22,16 @@ import org.joda.time._
 @Singleton
 class RegistrationController @Inject()(db: Database, cc: ControllerComponents, config: Configuration) extends BaseContext with play.api.i18n.I18nSupport {
 
-  val pages: Seq[String] = Seq("ward", "child", "parents", "emergency", "consent", "medical")
+//  val pages: Seq[String] = Seq("ward", "child", "parents", "emergency", "consent", "medical")
+  val pages: Seq[String] = Seq("closed")
 
   def reset() = BaseAction() { context => timestamp => implicit request: Request[AnyContent] =>
     Redirect(routes.RegistrationController.index()).withNewSession
   }
 
   def index() = BaseAction() { context => timestamp => implicit request: Request[AnyContent] =>
-    Redirect(routes.RegistrationController.page1()).withSession("page" -> "1")
+    Redirect(routes.RegistrationController.closed()).withSession("page" -> "0")
+//    Redirect(routes.RegistrationController.page1()).withSession("page" -> "1")
   }
 
   /** Page 1
@@ -290,4 +292,11 @@ class RegistrationController @Inject()(db: Database, cc: ControllerComponents, c
     }
   }
 
+  /** Closed
+   *
+   */
+  def closed() = BaseAction() { context => timestamp => implicit request: Request[AnyContent] =>
+    Ok(views.html.registration.closed())
+  }
+  
 }
